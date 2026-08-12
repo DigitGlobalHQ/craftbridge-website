@@ -2,530 +2,625 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CraftBridge — Indian Craftsmanship Meets the World</title>
-<meta name="description" content="CraftBridge connects authentic Indian artisans with global buyers through AI-powered sourcing. Discovery, procurement, quality control, catalog creation and international commerce — one connected platform.">
-<link rel="icon" href="assets/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CraftBridge — Where Indian Craft Meets the World</title>
+<meta name="description" content="CraftBridge connects authentic Indian artisans with global buyers through AI-powered sourcing — discovery, procurement, quality control, catalogs and export in one connected platform.">
+<meta name="theme-color" content="#ecdccb">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<link rel="shortcut icon" href="assets/favicon-32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FAF7F0;--ink:#1C2444;--ink-60:rgba(28,36,68,.6);--ink-70:rgba(28,36,68,.72);--gold:#B08A3E;--gold-lt:#D9B96A;--cream:#E9DFC8;--line:rgba(28,36,68,.1)}
+:root{
+  --blush-1:#f4e8da; --blush-2:#e9d2be; --blush:#efdfce;
+  --cream:#e7e3d6; --paper:#ffffff; --paper-warm:#f6f2ea;
+  --ink:#141310; --ink-2:#3a382f; --muted:#8a877c; --muted-2:#6f6d63;
+  --line:#e6e2d7; --line-dk:#dcd7ca; --mat:#dedacf;
+  --black:#0f0f0d; --black-soft:#161513;
+  --radius:26px;
+}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--ink);text-decoration:none;transition:color .2s}
-a:hover{color:var(--gold)}
-img{max-width:100%}
-h1,h2{font-family:'Instrument Serif',serif;font-weight:400;text-wrap:balance;margin:0}
-p{text-wrap:pretty}
-::selection{background:var(--cream)}
-.wrap{max-width:1180px;margin:0 auto;padding-left:28px;padding-right:28px}
-.eyebrow{font-size:12.5px;letter-spacing:.22em;font-weight:600;color:var(--gold);text-transform:uppercase}
-.btn{display:inline-block;white-space:nowrap;padding:15px 30px;border-radius:999px;font-weight:500;font-size:15.5px;transition:all .2s}
-.btn-primary{background:var(--ink);color:var(--bg);box-shadow:0 10px 26px rgba(28,36,68,.22)}
-.btn-primary:hover{background:var(--gold);color:#fff;transform:translateY(-2px)}
-.btn-ghost{border:1.5px solid rgba(28,36,68,.2);color:var(--ink)}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-@keyframes floatSlow{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
-/* nav */
-nav{position:sticky;top:0;z-index:50;background:rgba(250,247,240,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(28,36,68,.08)}
-.nav-in{display:flex;align-items:center;gap:28px;padding-top:12px;padding-bottom:12px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{
+  margin:0;
+  background:linear-gradient(158deg,var(--blush-1) 0%,var(--blush-2) 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Hanken Grotesk',system-ui,sans-serif;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  padding:14px;
+  padding:14px max(14px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));
+}
+img{max-width:100%;display:block}
+a,button{-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none;transition:color .25s,opacity .25s}
+h1,h2,h3,h4{margin:0;font-weight:300;letter-spacing:-.02em;line-height:.98}
+p{margin:0}
+::selection{background:var(--ink);color:var(--blush-1)}
+
+/* ---------- STAGE (floating rounded card) ---------- */
+.stage{
+  max-width:1440px;margin:0 auto;background:var(--paper);
+  border-radius:var(--radius);
+  box-shadow:0 30px 80px -30px rgba(60,40,20,.35),0 4px 14px rgba(60,40,20,.08);
+  position:relative;
+}
+.container{max-width:1180px;margin:0 auto;padding-left:40px;padding-right:40px}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:14px;z-index:80;
+  background:var(--cream);
+  border-radius:var(--radius) var(--radius) 0 0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 40px;
+}
+nav.scrolled{box-shadow:0 10px 30px -12px rgba(60,40,20,.28)}
 .brand{display:flex;align-items:center;gap:10px}
-.brand img{height:64px;width:auto;margin:-10px 0}
-.brand span{font-family:'Instrument Serif',serif;font-size:21px;letter-spacing:.06em}
-.brand b{color:var(--gold);font-weight:400}
-.nav-links{margin-left:auto;display:flex;gap:26px;align-items:center;font-size:14.5px;font-weight:500}
-.nav-links a{color:var(--ink-70)}
-.nav-links a.btn-primary{color:var(--bg)}
-.nav-links a.btn-primary:hover{color:#fff}
-.nav-links .btn{padding:10px 22px;font-size:14.5px}
-/* hero */
-.hero{position:relative;overflow:hidden}
-.hero-glow{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);width:900px;height:600px;background:radial-gradient(closest-side,rgba(176,138,62,.12),transparent 70%);pointer-events:none}
-.hero .float{position:absolute;pointer-events:none}
-.hero-center{max-width:860px;margin:0 auto;padding:110px 28px 70px;text-align:center;position:relative}
-.hero h1{font-size:clamp(48px,6.4vw,84px);line-height:1.02;margin-bottom:22px}
-.hero h1 em{color:var(--gold)}
-.hero-sub{font-size:19px;line-height:1.6;color:rgba(28,36,68,.66);max-width:520px;margin:0 auto 36px}
-.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.proof{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:36px;align-items:center;padding-bottom:90px;position:relative}
-.proof-num{font-family:'Instrument Serif',serif;font-size:44px;line-height:1}
-.proof-num b{color:var(--gold);font-weight:400}
-.proof small{display:block;font-size:14px;color:var(--ink-60);margin-top:6px}
-.proof-quote{border-left:1px solid rgba(28,36,68,.12);border-right:1px solid rgba(28,36,68,.12);padding:6px 32px;text-align:center}
-.proof-quote em{font-family:'Instrument Serif',serif;font-size:19px;line-height:1.45;color:rgba(28,36,68,.8)}
-.proof-quote small{display:block;font-size:13px;color:rgba(28,36,68,.55);margin-top:8px}
-/* trust */
-.trust{background:#fff;border-top:1px solid rgba(28,36,68,.08);border-bottom:1px solid rgba(28,36,68,.08)}
-.trust-in{padding-top:56px;padding-bottom:56px}
-.trust h2{font-size:26px;text-align:center;margin-bottom:38px;color:rgba(28,36,68,.9)}
-.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:34px}
-.trust-grid h3{font-size:15.5px;font-weight:600;margin:0 0 8px;font-family:'Outfit',sans-serif}
-.trust-grid h3 i{color:var(--gold);font-family:'Instrument Serif',serif;font-style:normal;font-size:20px;margin-right:8px}
-.trust-grid p{font-size:14.5px;line-height:1.6;color:var(--ink-60);margin:0}
-/* generic split section */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding-top:110px;padding-bottom:90px}
-.split h2{font-size:clamp(32px,3.6vw,46px);line-height:1.12;margin:18px 0 22px}
-.split h2 em{color:var(--gold)}
-.split p{font-size:16.5px;line-height:1.7;color:var(--ink-70);margin:0 0 16px}
-.split .img{display:flex;justify-content:center}
-.split .img img{width:min(100%,460px);animation:floatSlow 10s ease-in-out infinite}
-/* journey */
-.journey{background:var(--ink);color:var(--bg);position:relative;overflow:hidden}
-.journey .bg{position:absolute;right:-100px;bottom:-120px;width:420px;opacity:.1;pointer-events:none}
-.journey-in{padding-top:100px;padding-bottom:100px;position:relative}
-.journey-head{text-align:center;margin-bottom:64px}
-.journey-head .eyebrow{color:var(--gold-lt)}
-.journey-head h2{font-size:clamp(32px,3.6vw,46px);margin-top:16px}
-.journey-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
-.jcard{background:rgba(250,247,240,.05);border:1px solid rgba(250,247,240,.12);border-radius:18px;padding:28px 26px;transition:background .25s,transform .25s}
-.jcard:hover{background:rgba(250,247,240,.09);transform:translateY(-3px)}
-.jcard .n{font-family:'Instrument Serif',serif;font-size:15px;color:var(--gold-lt);letter-spacing:.14em;margin-bottom:12px}
-.jcard h3{font-size:19px;font-weight:600;margin:0 0 10px;font-family:'Outfit',sans-serif}
-.jcard p{font-size:14.5px;line-height:1.6;color:rgba(250,247,240,.68);margin:0}
-/* artisans */
-.artisans{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;padding-top:110px;padding-bottom:110px}
-.ph-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.ph{border-radius:16px;background:repeating-linear-gradient(-45deg,#F1EADD 0px,#F1EADD 12px,#F7F2E8 12px,#F7F2E8 24px);display:flex;align-items:center;justify-content:center}
-.ph span{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:rgba(28,36,68,.45)}
-.ph-pair .ph{aspect-ratio:3/4}
-.ph-pair .ph:last-child{margin-top:34px}
-.artisans h2{font-size:clamp(32px,3.6vw,46px);line-height:1.12;margin:18px 0 22px}
-.artisans h2 em{color:var(--gold)}
-.artisans p{font-size:17px;line-height:1.75;color:var(--ink-70);margin:0 0 12px}
-.artisans .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
-/* ai */
-.ai{background:#fff;border-top:1px solid rgba(28,36,68,.08);border-bottom:1px solid rgba(28,36,68,.08)}
-.ai-in{padding-top:100px;padding-bottom:100px}
-.ai-head{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-bottom:56px}
-.ai-head h2{font-size:clamp(32px,3.6vw,46px);line-height:1.12;margin:16px 0 18px;max-width:640px}
-.ai-head p{font-size:16.5px;line-height:1.7;color:var(--ink-70);max-width:620px;margin:0}
-.ai-head img{width:170px;animation:float 8s ease-in-out infinite}
-.ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
-.acard{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--bg);transition:transform .22s,box-shadow .22s}
-.acard:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(28,36,68,.1)}
-.acard .ic{width:34px;height:34px;border-radius:10px;background:var(--cream);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:17px;margin-bottom:14px}
-.acard h3{font-weight:600;font-size:15.5px;margin:0 0 7px;font-family:'Outfit',sans-serif}
-.acard p{font-size:14px;line-height:1.55;color:var(--ink-60);margin:0}
-.ai-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;align-items:center}
-.ai-chips span{font-size:13px;font-weight:500;border:1px solid rgba(28,36,68,.14);border-radius:999px;padding:7px 14px;color:var(--ink-70)}
-.ai-chips .lbl{border:none;padding:0;color:rgba(28,36,68,.5);font-weight:400}
-/* categories */
-.cats{padding-top:110px;padding-bottom:110px}
-.cats-head{text-align:center;margin-bottom:56px}
-.cats-head h2{font-size:clamp(32px,3.6vw,46px);margin-top:16px}
-.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:20px}
-.ccard{display:block;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .22s,box-shadow .22s;color:var(--ink)}
-.ccard:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(28,36,68,.12);color:var(--ink)}
-.ccard .ph{aspect-ratio:4/3;border-radius:0}
-.ccard .body{padding:20px 22px}
-.ccard h3{font-weight:600;font-size:16.5px;margin:0 0 6px;font-family:'Outfit',sans-serif}
-.ccard p{font-size:14px;line-height:1.55;color:var(--ink-60);margin:0}
-/* buyers */
-.buyers{background:#fff;border-top:1px solid rgba(28,36,68,.08);border-bottom:1px solid rgba(28,36,68,.08)}
-.buyers-in{padding-top:100px;padding-bottom:100px;display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:center}
-.buyers h2{font-size:clamp(32px,3.6vw,46px);line-height:1.12;margin:18px 0 20px}
-.buyers .lead{font-size:16.5px;line-height:1.7;color:var(--ink-70);margin:0 0 28px}
-.buyers .img{width:230px;animation:float 8s ease-in-out infinite}
-.buyers-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.bcard{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--bg);transition:border-color .2s}
-.bcard:hover{border-color:var(--gold)}
-.bcard h3{font-weight:600;font-size:15px;margin:0 0 5px;font-family:'Outfit',sans-serif}
-.bcard p{font-size:13.5px;line-height:1.5;color:var(--ink-60);margin:0}
-/* how */
-.how{padding-top:110px;padding-bottom:90px}
-.how-head{text-align:center;margin-bottom:56px}
-.how-head h2{font-size:clamp(32px,3.6vw,46px);margin-top:16px}
-.how-grid{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid rgba(28,36,68,.12)}
-.how-grid div{padding:30px 12px 8px;border-right:1px solid rgba(28,36,68,.08);text-align:center;min-width:0}
-.how-grid div:last-child{border-right:none}
-.how-grid .n{font-family:'Instrument Serif',serif;font-size:30px;color:var(--gold);margin-bottom:10px}
-.how-grid .t{font-weight:600;font-size:16px}
-/* impact */
-.impact{background:var(--ink);color:var(--bg);position:relative;overflow:hidden}
-.impact .bg{position:absolute;left:-80px;bottom:-100px;width:360px;opacity:.1;pointer-events:none}
-.impact-in{max-width:980px;margin:0 auto;padding:110px 28px;text-align:center;position:relative}
-.impact .eyebrow{color:var(--gold-lt)}
-.impact h2{font-size:clamp(40px,5vw,64px);line-height:1.08;margin:20px 0 26px}
-.impact h2 em{color:var(--gold-lt)}
-.impact p{font-size:17.5px;line-height:1.75;color:rgba(250,247,240,.75);max-width:680px;margin:0 auto 18px}
-.impact .quote{font-family:'Instrument Serif',serif;font-size:24px;font-style:italic;color:var(--gold-lt);margin:0}
-/* cta */
-.cta{text-align:center;padding-top:110px;padding-bottom:110px}
-.cta img{width:210px;animation:floatSlow 9s ease-in-out infinite;margin-bottom:8px}
-.cta h2{font-size:clamp(36px,4.4vw,56px);line-height:1.08;margin:0 0 20px}
-.cta p{font-size:17px;line-height:1.7;color:var(--ink-70);max-width:620px;margin:0 auto 34px}
-.cta .ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.cta .sig{font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;color:var(--gold);margin-top:36px}
-/* contact */
-.contact{background:#fff;border-top:1px solid rgba(28,36,68,.08)}
-.contact-in{padding-top:100px;padding-bottom:100px;display:grid;grid-template-columns:.9fr 1.1fr;gap:64px}
-.contact h2{font-size:clamp(32px,3.6vw,46px);margin:18px 0 22px}
-.contact .qs{display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.6;color:var(--ink-70)}
-.contact .qs b{font-weight:600;color:var(--ink);margin-top:8px}
-form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-input,select,textarea{padding:14px 16px;border:1px solid rgba(28,36,68,.16);border-radius:12px;font-family:'Outfit',sans-serif;font-size:15px;background:var(--bg);color:var(--ink);outline-color:var(--gold)}
-select,textarea,button[type=submit]{grid-column:1/-1}
-textarea{resize:vertical}
-button[type=submit]{background:var(--ink);color:var(--bg);padding:16px;border:none;border-radius:999px;font-family:'Outfit',sans-serif;font-weight:500;font-size:15.5px;cursor:pointer;transition:background .2s}
-button[type=submit]:hover{background:var(--gold)}
-.sent{border:1px solid rgba(176,138,62,.4);background:var(--bg);border-radius:18px;padding:48px;text-align:center;display:none}
-.sent h3{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;margin:0 0 10px}
-.sent p{font-size:15.5px;color:rgba(28,36,68,.65);margin:0}
-/* footer */
-footer{background:var(--ink);color:rgba(250,247,240,.72)}
-.foot-grid{padding-top:70px;display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:40px}
-.foot-brand .wordmark{font-family:'Instrument Serif',serif;font-size:24px;color:var(--bg);letter-spacing:.06em;margin-bottom:12px}
-.foot-brand .wordmark b{color:var(--gold-lt);font-weight:400}
-.foot-brand p{font-size:14px;line-height:1.6;max-width:240px;margin:0}
-.foot-grid h4{font-size:12.5px;letter-spacing:.16em;font-weight:600;color:var(--gold-lt);margin:0 0 16px;font-family:'Outfit',sans-serif}
-.foot-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.foot-grid a{font-size:14px;color:rgba(250,247,240,.72)}
-.foot-grid a:hover{color:var(--gold-lt)}
-.foot-bottom{margin-top:50px;border-top:1px solid rgba(250,247,240,.12);padding-top:28px;padding-bottom:28px;font-size:13.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.foot-bottom .links{display:flex;gap:22px}
-.foot-bottom a{color:rgba(250,247,240,.72)}
-.foot-bottom a:hover{color:var(--gold-lt)}
-/* responsive */
-@media (max-width:960px){
-  .nav-links a:not(.btn){display:none}
-  .split,.artisans,.buyers-in,.contact-in{grid-template-columns:1fr;gap:44px}
-  .proof{grid-template-columns:1fr;gap:24px;text-align:center}
-  .proof>div{text-align:center !important}
-  .proof-quote{border-left:none;border-right:none;border-top:1px solid rgba(28,36,68,.12);border-bottom:1px solid rgba(28,36,68,.12);padding:20px 0}
-  .ai-head{grid-template-columns:1fr}
-  .ai-head img{display:none}
-  .how-grid{grid-template-columns:repeat(3,1fr);row-gap:24px}
-  .how-grid div:nth-child(3){border-right:none}
-  .hero .float{opacity:.35}
-  .foot-grid{grid-template-columns:1fr 1fr}
+.brand img{height:30px;width:auto}
+.brand span{font-weight:500;font-size:15px;letter-spacing:.16em}
+.brand b{font-weight:500}
+.menu-btn{
+  display:flex;align-items:center;gap:11px;background:none;border:0;cursor:pointer;
+  font-family:inherit;font-size:14px;letter-spacing:.16em;font-weight:500;color:var(--ink);
+  padding:8px 2px;min-height:44px;
 }
-@media (max-width:700px){
-  /* keep listings 2-up on phones */
-  .cats-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .ccard .body{padding:13px 14px}
-  .ccard h3{font-size:14.5px}
-  .ccard p{font-size:12.5px}
-  .ai-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .acard{padding:16px}
-  .acard .ic{width:30px;height:30px;font-size:15px;margin-bottom:10px}
-  .acard h3{font-size:14px}
-  .acard p{font-size:12.5px}
-  .journey-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .jcard{padding:18px 16px}
-  .jcard h3{font-size:16px}
-  .jcard p{font-size:13px}
-  .trust-grid{grid-template-columns:1fr 1fr;gap:24px}
-  .buyers-grid{gap:12px}
-  .bcard{padding:14px}
-  .bcard h3{font-size:14px}
-  .bcard p{font-size:12.5px}
-  .hero-center{padding-top:80px;padding-bottom:50px}
-  .hero-sub{font-size:16.5px}
-  .btn{padding:14px 24px;font-size:14.5px}
-  .split,.artisans,.cats,.how,.cta{padding-top:70px;padding-bottom:60px}
-  .journey-in,.ai-in,.buyers-in,.contact-in,.trust-in{padding-top:64px;padding-bottom:64px}
-  .impact-in{padding-top:80px;padding-bottom:80px}
+.menu-btn .bars{display:inline-flex;flex-direction:column;gap:4px}
+.menu-btn .bars i{display:block;width:22px;height:1.5px;background:var(--ink);transition:transform .3s}
+.menu-btn:hover .bars i:first-child{transform:translateX(3px)}
+
+/* ---------- MENU OVERLAY ---------- */
+.overlay{
+  position:fixed;inset:0;z-index:200;background:var(--black);
+  color:#fff;display:flex;flex-direction:column;
+  padding:34px 6vw 44px;
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:opacity .4s ease,transform .4s ease,visibility .4s;
 }
-@media (max-width:560px){
+.overlay.open{opacity:1;visibility:visible;transform:none}
+.overlay-top{display:flex;align-items:center;justify-content:space-between}
+.overlay-top .brand span,.overlay-top .brand b{color:#fff}
+.close-btn{background:none;border:0;color:#fff;font-family:inherit;font-size:14px;letter-spacing:.16em;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:44px;padding:4px}
+.close-btn svg{width:18px;height:18px}
+.overlay-links{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.overlay-links a{
+  font-size:clamp(34px,7vw,74px);font-weight:300;letter-spacing:-.02em;line-height:1.12;
+  text-transform:uppercase;color:#f3efe6;display:inline-flex;align-items:baseline;gap:18px;width:fit-content;
+}
+.overlay-links a .n{font-size:14px;letter-spacing:.1em;color:#79766c;transform:translateY(-.4em)}
+.overlay-links a:hover{color:#fff;padding-left:14px}
+.overlay-foot{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;color:#8f8c82;font-size:13px;letter-spacing:.04em}
+.overlay-foot a:hover{color:#fff}
+
+/* ---------- BUTTONS ---------- */
+.cta{display:inline-flex;align-items:center;gap:8px;vertical-align:middle}
+.cta .lbl{
+  background:var(--ink);color:var(--blush-1);border-radius:999px;
+  padding:15px 26px;font-size:12.5px;letter-spacing:.14em;font-weight:600;text-transform:uppercase;
+  transition:background .25s,color .25s;white-space:nowrap;
+}
+.cta .sq{
+  width:46px;height:46px;border-radius:11px;background:var(--ink);color:var(--blush-1);
+  display:flex;align-items:center;justify-content:center;transform:rotate(-8deg);
+  box-shadow:0 6px 16px -6px rgba(20,19,16,.5);transition:transform .3s,background .25s;
+}
+.cta .sq svg{width:17px;height:17px}
+.cta:hover .lbl{background:#2a281f}
+.cta:hover .sq{transform:rotate(0deg) translateX(2px);background:#2a281f}
+.cta.light .lbl{background:#fff;color:var(--ink)}
+.cta.light .sq{background:#fff;color:var(--ink)}
+.cta.light:hover .lbl,.cta.light:hover .sq{background:#e9e5da}
+.cta.sm .lbl{padding:12px 20px;font-size:11.5px}
+.cta.sm .sq{width:40px;height:40px}
+
+/* ---------- SECTION PRIMS ---------- */
+section{position:relative}
+.eyebrow{font-size:12px;letter-spacing:.24em;font-weight:600;text-transform:uppercase;color:var(--muted)}
+.display{font-size:clamp(37px,7.1vw,92px);text-transform:uppercase;font-weight:300}
+.head{font-size:clamp(30px,5.4vw,64px);text-transform:uppercase;font-weight:300;text-wrap:balance}
+.lead{font-size:16px;line-height:1.6;color:var(--muted-2);max-width:520px;text-wrap:pretty}
+.js .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ---------- HERO ---------- */
+.hero{background:var(--paper-warm);padding:64px 0 92px;overflow:hidden}
+.hero-inner{position:relative;text-align:center;max-width:840px;margin:0 auto}
+.hero h1{position:relative;z-index:2}
+.hero h1 span{display:block}
+.hero h1 .l2{margin-left:min(6vw,74px)}
+.hero h1 .l3{margin-left:min(11vw,150px)}
+.hero .lead{margin:34px auto 30px;text-align:center;position:relative;z-index:2}
+.hero-float{position:absolute;top:0;z-index:1;pointer-events:none;border-radius:4px;box-shadow:0 24px 50px -20px rgba(40,25,10,.5);}
+.hero-float img{border-radius:4px}
+.hero-float.a{right:-44px;top:4px;width:162px;transform:rotate(2deg);animation:floaty 9s ease-in-out infinite}
+.hero-float.b{left:-52px;bottom:-40px;top:auto;width:166px;transform:rotate(-3deg);animation:floaty 11s ease-in-out infinite}
+.hero-float .tag{position:absolute;left:10px;bottom:10px;background:rgba(15,15,13,.72);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:4px;backdrop-filter:blur(4px)}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-14px) rotate(var(--r,0deg))}}
+.hero-float.a{--r:2deg}.hero-float.b{--r:-3deg}
+
+/* ---------- STATEMENT ---------- */
+.statement{padding:110px 0}
+.statement .head{text-align:center;margin:0 auto;max-width:14ch}
+.montage{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:54px;align-items:center}
+.montage .m1{grid-column:1/6;aspect-ratio:4/5}
+.montage .m2{grid-column:6/9;aspect-ratio:3/4;transform:translateY(38px)}
+.montage .mtext{grid-column:9/13;padding-left:8px}
+.montage img{width:100%;height:100%;object-fit:cover;border-radius:4px}
+.montage .lead{margin-bottom:22px}
+
+/* ---------- FRAMED GRID (makers / shop) ---------- */
+.block{padding:104px 0}
+.block-head{text-align:center;margin-bottom:52px}
+.block-head .head{margin-top:14px}
+.grid-cards{display:grid;gap:26px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+.frame{display:block}
+.frame .mat{background:var(--mat);border-radius:6px;padding:20px;overflow:hidden}
+.frame .mat img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.frame:hover .mat img{transform:scale(1.04)}
+.frame .meta{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-top:16px}
+.frame .meta h3{font-size:17px;font-weight:500;letter-spacing:0}
+.frame .meta .sub{font-size:13px;color:var(--muted);margin-top:3px;letter-spacing:.02em}
+.frame .meta .price{font-size:14px;font-weight:500;white-space:nowrap}
+
+/* ---------- CATEGORIES MARQUEE ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:26px 0}
+.marquee-track{display:flex;gap:0;width:max-content;animation:scroll 34s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-size:clamp(20px,3.2vw,34px);font-weight:300;text-transform:uppercase;letter-spacing:.01em;color:var(--ink);padding:0 34px;display:inline-flex;align-items:center;gap:34px}
+.marquee-track span::after{content:"";width:7px;height:7px;background:var(--blush-2);border-radius:50%}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- AI ---------- */
+.ai{background:var(--paper-warm);padding:104px 0}
+.ai-head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:52px}
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-dk);border-left:1px solid var(--line-dk)}
+.ai-item{border-right:1px solid var(--line-dk);border-bottom:1px solid var(--line-dk);padding:24px 22px;min-height:130px;transition:background .3s}
+.ai-item:hover{background:#fff}
+.ai-item .n{font-size:11px;letter-spacing:.14em;color:var(--muted);font-weight:600}
+.ai-item h3{font-size:16px;font-weight:500;margin:14px 0 8px;letter-spacing:0}
+.ai-item p{font-size:13px;line-height:1.5;color:var(--muted-2)}
+
+/* ---------- SERVE ---------- */
+.serve{padding:104px 0}
+.serve-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.serve-tile{border:1px solid var(--line);border-radius:14px;padding:24px 22px;transition:border-color .3s,transform .3s}
+.serve-tile:hover{border-color:var(--ink);transform:translateY(-3px)}
+.serve-tile h3{font-size:16px;font-weight:500;letter-spacing:0}
+.serve-tile p{font-size:13.5px;line-height:1.5;color:var(--muted-2);margin-top:8px}
+
+/* ---------- JOIN / TICKETS ---------- */
+.join{background:var(--paper-warm);padding:104px 0}
+.tickets{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:52px}
+.ticket{position:relative;border-radius:18px;padding:38px 34px 34px;overflow:visible}
+.ticket.lightt{background:#efece3;color:var(--ink)}
+.ticket.darkt{background:var(--black);color:#f2efe7}
+.ticket-ic{width:34px;height:34px;margin:0 auto 16px}
+.ticket-ic svg{width:100%;height:100%}
+.ticket-top{text-align:center}
+.ticket-title{font-size:24px;font-weight:400;letter-spacing:.02em;text-transform:uppercase}
+.ticket-sub{font-size:13px;letter-spacing:.04em;margin-top:8px;opacity:.7}
+.perf{position:relative;height:2px;margin:28px -34px;background-image:linear-gradient(90deg,currentColor 42%,transparent 0);background-size:14px 2px;background-repeat:repeat-x;opacity:.28}
+.perf::before,.perf::after{content:"";position:absolute;top:50%;width:30px;height:30px;border-radius:50%;background:var(--paper-warm);transform:translateY(-50%)}
+.perf::before{left:-15px}.perf::after{right:-15px}
+.ticket-includes{font-size:11px;letter-spacing:.2em;font-weight:600;text-transform:uppercase;opacity:.6;margin-bottom:18px}
+.ticket ul{list-style:none;margin:0 0 28px;padding:0;display:flex;flex-direction:column;gap:14px}
+.ticket li{display:flex;align-items:center;gap:12px;font-size:14.5px}
+.ticket li svg{width:15px;height:15px;flex-shrink:0;opacity:.85}
+.ticket .cta{margin-top:2px}
+
+/* ---------- CONTACT ---------- */
+.contact{padding:104px 0}
+.contact-head{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end;margin-bottom:48px}
+.info-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:stretch}
+.info-img{border-radius:8px;overflow:hidden}
+.info-img img{width:100%;height:100%;object-fit:cover;min-height:340px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.info-box{background:var(--paper-warm);border-radius:12px;padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between;min-height:150px}
+.info-box .k{font-size:11px;letter-spacing:.18em;font-weight:600;text-transform:uppercase;color:var(--muted)}
+.info-box .v{font-size:15px;line-height:1.45;color:var(--ink);font-weight:400;margin-top:auto}
+.form-panel{background:var(--paper-warm);border-radius:18px;padding:44px;margin-top:22px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:26px 30px}
+.field{display:flex;flex-direction:column}
+.field.full{grid-column:1/-1}
+.field label{font-size:11px;letter-spacing:.16em;font-weight:600;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.field input,.field select,.field textarea{
+  font-family:inherit;font-size:16px;color:var(--ink);background:transparent;
+  border:0;border-bottom:1.5px solid var(--line-dk);padding:9px 2px;outline:none;transition:border-color .3s;
+}
+.field textarea{resize:vertical;min-height:52px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink)}
+.field input::placeholder,.field textarea::placeholder{color:#b3afa2}
+.form-panel .cta{margin-top:6px;background:none;border:0;cursor:pointer;font-family:inherit}
+.sent{display:none;text-align:center;padding:26px 0}
+.sent h3{font-size:30px;font-weight:300;text-transform:uppercase}
+.sent p{color:var(--muted-2);margin-top:12px;font-size:15px}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var(--radius);padding:80px 0 34px;overflow:hidden}
+.polaroids{display:flex;justify-content:center;margin-bottom:14px;height:150px;position:relative}
+.polaroids .pol{position:absolute;top:0;width:120px;background:#fff;padding:8px 8px 22px;border-radius:2px;box-shadow:0 18px 40px -14px rgba(0,0,0,.6)}
+.polaroids .pol img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.polaroids .p1{transform:rotate(-11deg) translateX(-92px);z-index:1}
+.polaroids .p2{transform:rotate(2deg);z-index:3;top:-10px}
+.polaroids .p3{transform:rotate(12deg) translateX(92px);z-index:2}
+.foot-contact{text-align:center;margin:26px 0 44px}
+.foot-contact a{display:block;font-size:clamp(26px,5vw,52px);font-weight:300;letter-spacing:-.01em;color:#fff}
+.foot-contact a:hover{color:#c9c4b6}
+.foot-contact .phone{color:#cfcabd;margin-top:6px}
+.foot-nav{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#c4bfb2}
+.foot-nav a{padding:6px 2px}
+.foot-nav a:hover{color:#fff}
+.socials{display:flex;gap:16px;justify-content:center;margin:26px 0 30px}
+.socials a{width:38px;height:38px;border:1px solid rgba(255,255,255,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#cfcabd}
+.socials a:hover{background:#fff;color:var(--black);border-color:#fff}
+.socials svg{width:16px;height:16px}
+.copyright{text-align:center;font-size:12px;letter-spacing:.06em;color:#7d7a70;border-top:1px solid rgba(255,255,255,.1);padding-top:24px}
+
+/* ---------- BACK TO TOP ---------- */
+.totop{position:fixed;right:26px;bottom:26px;bottom:max(26px,env(safe-area-inset-bottom));z-index:90;width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--blush-1);border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(14px);transition:opacity .35s,transform .35s;box-shadow:0 12px 30px -8px rgba(20,19,16,.6)}
+.totop.show{opacity:1;transform:none}
+.totop svg{width:18px;height:18px}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1024px){
+  .container{padding-left:32px;padding-right:32px}
+  .ai-head,.contact-head{grid-template-columns:1fr;gap:26px}
+  .info-wrap{grid-template-columns:1fr}
+  .info-img img{min-height:260px}
+}
+@media (max-width:760px){
+  body{padding:8px}
+  nav{top:8px;padding:16px 22px}
+  .container{padding-left:22px;padding-right:22px}
+  .hero{padding:36px 0 56px}
+  .hero h1 .l2{margin-left:8vw}.hero h1 .l3{margin-left:16vw}
+  .hero-float{display:none}
+  .statement,.block,.ai,.serve,.join,.contact{padding:66px 0}
+  .montage{grid-template-columns:1fr 1fr;gap:12px}
+  .montage .m1{grid-column:1/2}.montage .m2{grid-column:2/3;transform:none}
+  .montage .mtext{grid-column:1/3;padding-left:0;margin-top:8px}
+  .grid-3,.grid-4{grid-template-columns:repeat(2,1fr);gap:16px}
+  .ai-grid{grid-template-columns:repeat(2,1fr)}
+  .serve-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .tickets{grid-template-columns:1fr;gap:32px}
+  .info-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .form-panel{padding:28px 22px}
+  form{grid-template-columns:1fr 1fr;gap:22px 18px}
+  .frame .mat{padding:12px}
+  .frame .meta h3{font-size:15px}
+  .polaroids .p1{transform:rotate(-11deg) translateX(-70px)}
+  .polaroids .p3{transform:rotate(12deg) translateX(70px)}
+}
+@media (max-width:430px){
+  .hero .lead,.lead{font-size:15px}
+  .display{font-size:15vw}
+  .ai-item{padding:18px 16px;min-height:112px}
+  .ai-item h3{font-size:14.5px}
+  .serve-tile{padding:18px 16px}
+  .frame .meta{flex-direction:column;gap:4px}
+  .frame .meta .price{align-self:flex-start}
   form{grid-template-columns:1fr}
-  .how-grid{grid-template-columns:repeat(2,1fr)}
-  .how-grid div:nth-child(3){border-right:1px solid rgba(28,36,68,.08)}
-  .how-grid div:nth-child(even){border-right:none}
-  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-nav{gap:18px}
 }
 </style>
 </head>
 <body id="top">
 
-<nav>
-  <div class="wrap nav-in">
-    <a href="#top" class="brand">
-      <img src="assets/logo.png" alt="CraftBridge logo">
-      <span>CRAFT<b>BRIDGE</b></span>
-    </a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#journey">Journey</a>
-      <a href="#ai">AI</a>
-      <a href="#categories">Categories</a>
-      <a href="#buyers">Buyers</a>
-      <a href="#contact" class="btn btn-primary" style="box-shadow:none">Contact</a>
-    </div>
-  </div>
-</nav>
+<div class="stage">
 
-<header class="hero">
-  <div class="hero-glow"></div>
-  <img class="float" src="assets/globe.png" alt="" style="right:4%;top:70px;width:190px;animation:floatSlow 9s ease-in-out infinite">
-  <img class="float" src="assets/magnifier.png" alt="" style="left:5%;top:90px;width:150px;animation:float 11s ease-in-out infinite">
-  <img class="float" src="assets/cart.png" alt="" style="left:9%;bottom:120px;width:170px;animation:float 8s ease-in-out infinite">
-  <img class="float" src="assets/box.png" alt="" style="right:7%;bottom:90px;width:230px;animation:float 7s ease-in-out infinite">
-  <div class="hero-center">
-    <h1>Indian craftsmanship<br><em>meets the world</em></h1>
-    <p class="hero-sub">Authentic Indian artisans, connected to global buyers through AI-powered sourcing — 24/7</p>
-    <div class="hero-ctas">
-      <a href="#categories" class="btn btn-primary">Explore the Marketplace</a>
-      <a href="#seller" class="btn btn-ghost" style="background:#fff">Become a Seller</a>
-    </div>
-  </div>
-  <div class="wrap proof" style="max-width:1080px">
-    <div style="text-align:right">
-      <div class="proof-num">1M<b>+</b></div>
-      <small>artisans we&rsquo;re on a mission to empower</small>
-    </div>
-    <div class="proof-quote">
-      <em>&ldquo;Connecting Continents. Creating Opportunities.&rdquo;</em>
-      <small>From the hands of Indian artisans to homes, businesses and buyers around the world</small>
-    </div>
-    <div style="text-align:left">
-      <div class="proof-num">14</div>
-      <small>AI tools across the entire sourcing journey</small>
-    </div>
-  </div>
-</header>
+  <nav id="nav">
+    <a href="#top" class="brand"><img src="assets/logo-mark.png" alt="CraftBridge"><span>CRAFT<b>BRIDGE</b></span></a>
+    <button class="menu-btn" id="menuOpen" aria-label="Open menu">MENU <span class="bars"><i></i><i></i></span></button>
+  </nav>
 
-<section class="trust">
-  <div class="wrap trust-in reveal">
-    <h2>A New Way to Source Indian Handicrafts</h2>
-    <div class="trust-grid">
-      <div><h3><i>01</i>Authentic Artisans</h3><p>Direct access to skilled Indian craftsmen and women.</p></div>
-      <div><h3><i>02</i>AI-Powered Sourcing</h3><p>Technology simplifies discovery, procurement, catalogs and demand forecasting.</p></div>
-      <div><h3><i>03</i>Global Distribution</h3><p>Connecting Indian craftsmanship with international buyers and marketplaces.</p></div>
-      <div><h3><i>04</i>End-to-End Support</h3><p>From sourcing and quality control to packaging, shipping and export documentation.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="wrap split">
-  <div class="reveal">
-    <div class="eyebrow">The Problem</div>
-    <h2>Great artisans. <em>Limited global access.</em></h2>
-    <p>India has millions of talented artisans creating products with generations of knowledge behind them. Yet many remain disconnected from international markets.</p>
-    <p><strong style="font-weight:600">CraftBridge is changing that.</strong> We are building an AI-powered sourcing platform that connects Indian artisans directly with global buyers — while simplifying the complex processes between creation and commerce.</p>
-    <p style="margin-bottom:0">Artisans, products, procurement, AI, warehousing, export and international sales — one connected ecosystem.</p>
-  </div>
-  <div class="img reveal"><img src="assets/bridge.png" alt="Bridge"></div>
-</section>
-
-<section id="journey" class="journey">
-  <img class="bg" src="assets/globe.png" alt="">
-  <div class="wrap journey-in">
-    <div class="journey-head reveal">
-      <div class="eyebrow">The CraftBridge Journey</div>
-      <h2>From Artisan to the World</h2>
-    </div>
-    <div class="journey-grid reveal">
-      <div class="jcard"><div class="n">STEP 01</div><h3>Indian Artisan</h3><p>We discover skilled artisans and bring their craftsmanship into the global marketplace.</p></div>
-      <div class="jcard"><div class="n">STEP 02</div><h3>AI</h3><p>AI transforms raw product information into professional catalogs, descriptions, keywords, images, pricing insights and demand predictions.</p></div>
-      <div class="jcard"><div class="n">STEP 03</div><h3>Procurement</h3><p>We verify products, negotiate pricing, manage inventory and coordinate packaging.</p></div>
-      <div class="jcard"><div class="n">STEP 04</div><h3>Warehouse</h3><p>Products move through organized inventory and quality control systems before reaching international buyers.</p></div>
-      <div class="jcard"><div class="n">STEP 05</div><h3>Export</h3><p>We manage shipping, documentation, customs, tracking and the processes required for international commerce.</p></div>
-      <div class="jcard"><div class="n">STEP 06</div><h3>Global Buyers</h3><p>Connecting products with wholesalers, hotels, interior designers, retailers, online marketplaces and customers worldwide.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="artisans" class="wrap artisans">
-  <div class="ph-pair reveal">
-    <div class="ph"><span>artisan portrait</span></div>
-    <div class="ph"><span>craft in progress</span></div>
-  </div>
-  <div class="reveal">
-    <div class="eyebrow">Artisan Showcase</div>
-    <h2>Meet the Hands <em>Behind the Craft</em></h2>
-    <p>Every product begins with a person. A craft passed through generations. A skill developed over years. A product created by hand.</p>
-    <p>CraftBridge helps these artisans reach customers and businesses far beyond their local markets.</p>
-    <div class="ctas">
-      <a href="#categories" class="btn btn-primary" style="box-shadow:none">Discover Our Artisans</a>
-      <a href="#seller" class="btn btn-ghost">Become a Seller</a>
-    </div>
-  </div>
-</section>
-
-<section id="ai" class="ai">
-  <div class="wrap ai-in">
-    <div class="ai-head reveal">
-      <div>
-        <div class="eyebrow">Intelligence for Every Craft</div>
-        <h2>AI That Understands the Business Behind Every Product</h2>
-        <p>From the moment an artisan uploads a product to the moment a buyer receives it, AI assists across the entire journey — faster, smarter, more scalable.</p>
-      </div>
-      <img src="assets/magnifier.png" alt="Discovery">
-    </div>
-    <div class="ai-grid reveal">
-      <div class="acard"><div class="ic">◉</div><h3>Product Recognition</h3><p>Understand products from images and identify relevant product information.</p></div>
-      <div class="acard"><div class="ic">✦</div><h3>AI Background Removal</h3><p>Clean, professional product images ready for online marketplaces.</p></div>
-      <div class="acard"><div class="ic">✧</div><h3>AI Image Enhancement</h3><p>Improve product imagery for digital catalogs and global commerce.</p></div>
-      <div class="acard"><div class="ic">¶</div><h3>AI Product Description</h3><p>Professional product descriptions from simple product information.</p></div>
-      <div class="acard"><div class="ic">#</div><h3>AI Keywords</h3><p>Relevant search keywords to improve product discovery.</p></div>
-      <div class="acard"><div class="ic">₹</div><h3>AI Price Suggestion</h3><p>Determine suitable pricing using available product information.</p></div>
-      <div class="acard"><div class="ic">∿</div><h3>AI Demand Forecasting</h3><p>Understand potential demand and improve procurement decisions.</p></div>
-      <div class="acard"><div class="ic">文</div><h3>AI Translation</h3><p>Make product information accessible to international buyers.</p></div>
-    </div>
-    <div class="ai-chips reveal">
-      <span class="lbl">Also:</span>
-      <span>AI Inventory Prediction</span><span>AI Customer Support</span><span>AI Voice Agent</span><span>AI Procurement Assistant</span><span>AI Negotiation Assistant</span><span>AI Shipment Tracking</span>
-    </div>
-  </div>
-</section>
-
-<section id="categories" class="wrap cats">
-  <div class="cats-head reveal">
-    <div class="eyebrow">Marketplace</div>
-    <h2>Explore Indian Craftsmanship</h2>
-  </div>
-  <div class="cats-grid reveal">
-    <a href="#contact" class="ccard"><div class="ph"><span>wood craft photo</span></div><div class="body"><h3>Wood Crafts</h3><p>Handcrafted wooden products created using traditional carving techniques.</p></div></a>
-    <a href="#contact" class="ccard"><div class="ph"><span>metal craft photo</span></div><div class="body"><h3>Metal Crafts</h3><p>Brass, copper and metal products created through traditional craftsmanship.</p></div></a>
-    <a href="#contact" class="ccard"><div class="ph"><span>pottery photo</span></div><div class="body"><h3>Pottery</h3><p>Handcrafted ceramic and clay products by skilled Indian potters.</p></div></a>
-    <a href="#contact" class="ccard"><div class="ph"><span>textile photo</span></div><div class="body"><h3>Textiles</h3><p>Traditional Indian fabrics — weaving, embroidery, printing and more.</p></div></a>
-    <a href="#contact" class="ccard"><div class="ph"><span>home decor photo</span></div><div class="body"><h3>Home Decor</h3><p>Distinctive handcrafted pieces that bring character to modern spaces.</p></div></a>
-    <a href="#contact" class="ccard"><div class="ph"><span>decor object photo</span></div><div class="body"><h3>Decorative Objects</h3><p>Artistic pieces for homes, hotels, offices and retail environments.</p></div></a>
-    <a href="#contact" class="ccard"><div class="ph"><span>traditional art photo</span></div><div class="body"><h3>Traditional Art</h3><p>Handcrafted artistic products inspired by Indian culture and heritage.</p></div></a>
-    <a href="#contact" class="ccard"><div class="ph"><span>furniture photo</span></div><div class="body"><h3>Furniture</h3><p>Distinctive handcrafted furniture made with traditional Indian techniques.</p></div></a>
-  </div>
-</section>
-
-<section id="buyers" class="buyers">
-  <div class="wrap buyers-in">
-    <div class="reveal">
-      <div class="eyebrow">Who We Serve</div>
-      <h2>Built for Buyers Who Value Authentic Craft</h2>
-      <p class="lead">CraftBridge serves businesses and buyers looking for authentic Indian products at scale — sourcing, procurement, communication, inventory and fulfillment, simplified.</p>
-      <img class="img" src="assets/cart.png" alt="Wholesale cart">
-    </div>
-    <div class="buyers-grid reveal">
-      <div class="bcard"><h3>US Wholesalers</h3><p>Authentic Indian handicrafts for retail and distribution.</p></div>
-      <div class="bcard"><h3>Hotels</h3><p>Handcrafted products and Indian design for hospitality spaces.</p></div>
-      <div class="bcard"><h3>Interior Designers</h3><p>Distinctive products for residential and commercial projects.</p></div>
-      <div class="bcard"><h3>Furniture Stores</h3><p>Unique handcrafted products for your collection.</p></div>
-      <div class="bcard"><h3>Online Retailers</h3><p>Products ready for digital commerce.</p></div>
-      <div class="bcard"><h3>Amazon Sellers</h3><p>Indian products for global marketplace opportunities.</p></div>
-      <div class="bcard"><h3>Etsy Sellers</h3><p>Authentic handcrafted products for curated collections.</p></div>
-      <div class="bcard"><h3>Retail Stores</h3><p>Collections built with products that carry a story.</p></div>
-      <div class="bcard"><h3>Corporate Buyers</h3><p>Distinctive products for gifting and business needs.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap how">
-  <div class="how-head reveal">
-    <div class="eyebrow">How It Works</div>
-    <h2>Six Steps, One Bridge</h2>
-  </div>
-  <div class="how-grid reveal">
-    <div><div class="n">01</div><div class="t">Discover</div></div>
-    <div><div class="n">02</div><div class="t">Verify</div></div>
-    <div><div class="n">03</div><div class="t">Catalog</div></div>
-    <div><div class="n">04</div><div class="t">Source</div></div>
-    <div><div class="n">05</div><div class="t">Ship</div></div>
-    <div><div class="n">06</div><div class="t">Deliver</div></div>
-  </div>
-</section>
-
-<section id="impact" class="impact">
-  <img class="bg" src="assets/box.png" alt="">
-  <div class="impact-in reveal">
-    <div class="eyebrow">Our Mission</div>
-    <h2>Empowering <em>One Million</em> Artisans</h2>
-    <p>Our mission is to empower one million Indian artisans by connecting them directly with global buyers — using AI to simplify procurement, catalogs, forecasting, quality, pricing, translation and support.</p>
-    <p class="quote">We believe technology should not replace craftsmanship. It should help the world discover it.</p>
-  </div>
-</section>
-
-<section id="seller" class="wrap cta">
-  <div class="reveal">
-    <img src="assets/globe.png" alt="Globe">
-    <h2>Ready to Build the Bridge?</h2>
-    <p>Whether you are an artisan looking for global opportunities or a buyer searching for authentic Indian craftsmanship, CraftBridge is built to connect you.</p>
-    <div class="ctas">
-      <a href="#categories" class="btn btn-primary" style="box-shadow:none">Explore Products</a>
-      <a href="#contact" class="btn btn-ghost">Become a Seller</a>
-      <a href="#contact" class="btn btn-ghost">Wholesale With Us</a>
-    </div>
-    <div class="sig">Crafted in India. Connected to the World.</div>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <div class="wrap contact-in">
-    <div class="reveal">
-      <div class="eyebrow">Contact</div>
-      <h2>Let&rsquo;s Connect</h2>
-      <div class="qs">
-        <div>Have a sourcing requirement?</div>
-        <div>Looking for authentic Indian products?</div>
-        <div>Want to become a CraftBridge artisan?</div>
-        <div>Interested in wholesale partnerships?</div>
-        <b>Our team would love to hear from you.</b>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-inner reveal">
+        <div class="hero-float a"><img src="assets/craft/brass-lota.jpg" alt="Hand-etched brass lota"><span class="tag">Metal Craft</span></div>
+        <div class="hero-float b"><img src="assets/craft/kundan-clutch.jpg" alt="Kundan bridal clutch"><span class="tag">Handcrafted</span></div>
+        <p class="eyebrow" style="margin-bottom:26px">Authentic Crafts · Intelligent Sourcing · Global Reach</p>
+        <h1 class="display"><span>Where Indian</span><span class="l2">Craft Meets</span><span class="l3">The World.</span></h1>
+        <p class="lead">Authentic Indian artisans, connected to global buyers through AI-powered sourcing — discovery, procurement, quality and export in one connected platform.</p>
+        <a class="cta" href="#shop"><span class="lbl">Explore the Marketplace</span><span class="sq" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5 11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div>
     </div>
-    <div class="reveal">
-      <form id="inquiry-form">
-        <input required name="name" placeholder="Full Name">
-        <input name="business" placeholder="Business Name">
-        <input required type="email" name="email" placeholder="Email Address">
-        <input name="phone" placeholder="Phone Number">
-        <select name="role">
-          <option>I Am A…</option><option>Artisan</option><option>Wholesaler</option><option>Retailer</option><option>Interior Designer</option><option>Hotel</option><option>Furniture Brand</option><option>Online Seller</option><option>Other</option>
-        </select>
-        <textarea rows="4" name="message" placeholder="Tell Us About Your Requirement"></textarea>
-        <button type="submit">Send Inquiry</button>
-      </form>
-      <div class="sent" id="sent-box">
-        <h3>Thank you!</h3>
-        <p>Your inquiry has been received. Our team will get back to you shortly.</p>
+  </header>
+
+  <!-- STATEMENT -->
+  <section class="statement" id="about">
+    <div class="container">
+      <h2 class="head reveal">Every piece begins with a pair of hands.</h2>
+      <div class="montage reveal">
+        <div class="m1"><img src="assets/craft/woodcarver.jpg" alt="Artisan carving a wooden sculpture"></div>
+        <div class="m2"><img src="assets/craft/embroidery.jpg" alt="Hand embroidery in progress"></div>
+        <div class="mtext">
+          <p class="lead">India has millions of artisans carrying generations of knowledge — yet most remain disconnected from international markets. CraftBridge is the bridge: an AI-powered sourcing platform linking makers directly to global buyers.</p>
+          <p class="lead" style="color:var(--ink)">Artisans, products, procurement, warehousing and export — one connected ecosystem.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap foot-grid">
-    <div class="foot-brand">
-      <div class="wordmark">CRAFT<b>BRIDGE</b></div>
-      <p>Connecting Continents. Creating Opportunities.</p>
+  <!-- MAKERS -->
+  <section class="block" id="makers" style="background:var(--paper-warm)">
+    <div class="container">
+      <div class="block-head reveal">
+        <p class="eyebrow">The People</p>
+        <h2 class="head">Meet the Makers.</h2>
+      </div>
+      <div class="grid-cards grid-3 reveal">
+        <a class="frame" href="#contact">
+          <div class="mat"><img src="assets/craft/potter.jpg" alt="Potter at the wheel"></div>
+          <div class="meta"><div><h3>Ramesh, the Potter</h3><div class="sub">Terracotta · Rajasthan</div></div></div>
+        </a>
+        <a class="frame" href="#contact">
+          <div class="mat"><img src="assets/craft/weaver.jpg" alt="Weaver at a traditional loom"></div>
+          <div class="meta"><div><h3>Iqbal, the Weaver</h3><div class="sub">Handloom · Kutch</div></div></div>
+        </a>
+        <a class="frame" href="#contact">
+          <div class="mat"><img src="assets/craft/blockprint.jpg" alt="Artisan block printing textile"></div>
+          <div class="meta"><div><h3>Meera, the Printer</h3><div class="sub">Block Print · Bagru</div></div></div>
+        </a>
+      </div>
     </div>
-    <div>
-      <h4>EXPLORE</h4>
-      <ul><li><a href="#top">Home</a></li><li><a href="#about">About</a></li><li><a href="#categories">Products</a></li><li><a href="#categories">Categories</a></li><li><a href="#artisans">Artisans</a></li><li><a href="#buyers">Wholesale</a></li><li><a href="#ai">AI Marketplace</a></li><li><a href="#top">Blog</a></li><li><a href="#contact">Contact</a></li></ul>
+  </section>
+
+  <!-- SHOP -->
+  <section class="block" id="shop">
+    <div class="container">
+      <div class="block-head reveal">
+        <p class="eyebrow">The Marketplace</p>
+        <h2 class="head">Sourced with soul.</h2>
+      </div>
+      <div class="grid-cards grid-4 reveal">
+        <a class="frame" href="#contact">
+          <div class="mat"><img src="assets/craft/brass-lota.jpg" alt="Hand-etched brass lota"></div>
+          <div class="meta"><div><h3>Etched Brass Lota</h3><div class="sub">Metal Craft</div></div></div>
+        </a>
+        <a class="frame" href="#contact">
+          <div class="mat"><img src="assets/craft/kundan-clutch.jpg" alt="Kundan bridal clutch"></div>
+          <div class="meta"><div><h3>Kundan Clutch</h3><div class="sub">Textile · Jewelry</div></div></div>
+        </a>
+        <a class="frame" href="#contact">
+          <div class="mat"><img src="assets/craft/bamboo-fans.jpg" alt="Woven bamboo hand fans"></div>
+          <div class="meta"><div><h3>Woven Hand Fans</h3><div class="sub">Home Decor</div></div></div>
+        </a>
+        <a class="frame" href="#contact">
+          <div class="mat"><img src="assets/craft/artifacts.jpg" alt="Carved decorative objects"></div>
+          <div class="meta"><div><h3>Carved Keepsakes</h3><div class="sub">Traditional Art</div></div></div>
+        </a>
+      </div>
     </div>
-    <div>
-      <h4>FOR ARTISANS</h4>
-      <ul><li><a href="#seller">Become Seller</a></li><li><a href="#seller">Upload Product</a></li><li><a href="#seller">Receive Orders</a></li><li><a href="#seller">Payments</a></li><li><a href="#seller">Inventory</a></li><li><a href="#seller">Training</a></li><li><a href="#contact">Support</a></li></ul>
-    </div>
-    <div>
-      <h4>FOR BUYERS</h4>
-      <ul><li><a href="#categories">Browse Products</a></li><li><a href="#buyers">Wishlist</a></li><li><a href="#buyers">Bulk Order</a></li><li><a href="#buyers">Track Shipment</a></li><li><a href="#contact">Chat</a></li><li><a href="#buyers">Payments</a></li></ul>
-    </div>
-    <div>
-      <h4>COMPANY</h4>
-      <ul><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li><li><a href="#top">Careers</a></li><li><a href="#top">Blog</a></li><li><a href="#top">Privacy Policy</a></li><li><a href="#top">Terms of Service</a></li></ul>
+  </section>
+
+  <!-- CATEGORIES MARQUEE -->
+  <div class="marquee reveal">
+    <div class="marquee-track">
+      <span>Wood Crafts</span><span>Metal Crafts</span><span>Pottery</span><span>Textiles</span><span>Home Decor</span><span>Decorative Objects</span><span>Traditional Art</span><span>Furniture</span>
+      <span>Wood Crafts</span><span>Metal Crafts</span><span>Pottery</span><span>Textiles</span><span>Home Decor</span><span>Decorative Objects</span><span>Traditional Art</span><span>Furniture</span>
     </div>
   </div>
-  <div class="wrap foot-bottom">
-    <div>© 2026 CraftBridge. All rights reserved.</div>
-    <div class="links"><a href="#top">Privacy Policy</a><a href="#top">Terms of Service</a></div>
+
+  <!-- AI -->
+  <section class="ai" id="ai">
+    <div class="container">
+      <div class="ai-head reveal">
+        <div>
+          <p class="eyebrow" style="margin-bottom:18px">Intelligence for Every Craft</p>
+          <h2 class="head">AI behind<br>the craft.</h2>
+        </div>
+        <p class="lead">From the moment an artisan uploads a product to the moment a buyer receives it, AI assists across the entire journey — faster, smarter, more scalable.</p>
+      </div>
+      <div class="ai-grid reveal">
+        <div class="ai-item"><div class="n">01</div><h3>Product Recognition</h3><p>Understand products from images and identify key information.</p></div>
+        <div class="ai-item"><div class="n">02</div><h3>Background Removal</h3><p>Clean, marketplace-ready product images, automatically.</p></div>
+        <div class="ai-item"><div class="n">03</div><h3>Image Enhancement</h3><p>Sharper imagery for digital catalogs and global commerce.</p></div>
+        <div class="ai-item"><div class="n">04</div><h3>Product Descriptions</h3><p>Professional copy generated from simple product notes.</p></div>
+        <div class="ai-item"><div class="n">05</div><h3>Smart Keywords</h3><p>Relevant search terms that improve product discovery.</p></div>
+        <div class="ai-item"><div class="n">06</div><h3>Price Suggestion</h3><p>Suitable pricing informed by available product data.</p></div>
+        <div class="ai-item"><div class="n">07</div><h3>Demand Forecasting</h3><p>Anticipate demand and sharpen procurement decisions.</p></div>
+        <div class="ai-item"><div class="n">08</div><h3>Translation</h3><p>Product information made ready for international buyers.</p></div>
+        <div class="ai-item"><div class="n">09</div><h3>Procurement Assistant</h3><p>Artisan discovery, verification and inventory workflows.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVE -->
+  <section class="serve" id="buyers">
+    <div class="container">
+      <div class="block-head reveal" style="text-align:left;margin-bottom:0">
+        <p class="eyebrow">Who We Serve</p>
+        <h2 class="head" style="margin-top:14px">Built for buyers who value authentic craft.</h2>
+      </div>
+      <div class="serve-grid reveal">
+        <div class="serve-tile"><h3>US Wholesalers</h3><p>Authentic Indian handicrafts for retail and distribution.</p></div>
+        <div class="serve-tile"><h3>Hotels</h3><p>Handcrafted products and Indian design for hospitality spaces.</p></div>
+        <div class="serve-tile"><h3>Interior Designers</h3><p>Distinctive pieces for residential and commercial projects.</p></div>
+        <div class="serve-tile"><h3>Furniture Stores</h3><p>Unique handcrafted products for your collection.</p></div>
+        <div class="serve-tile"><h3>Online Retailers</h3><p>Products ready for digital commerce and marketplaces.</p></div>
+        <div class="serve-tile"><h3>Corporate Buyers</h3><p>Distinctive products for gifting and business needs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN / TICKETS -->
+  <section class="join" id="join">
+    <div class="container">
+      <div class="block-head reveal">
+        <p class="eyebrow">Two Ways to Join</p>
+        <h2 class="head">Build the bridge with us.</h2>
+      </div>
+      <div class="tickets reveal">
+        <div class="ticket lightt">
+          <div class="ticket-top">
+            <div class="ticket-ic"><svg viewBox="0 0 32 32" fill="none"><path d="M6 11a3 3 0 0 0 0 10v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-10V8a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v3Z" stroke="currentColor" stroke-width="1.4"/><path d="M14 6v20" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 3"/></svg></div>
+            <div class="ticket-title">For Artisans</div>
+            <div class="ticket-sub">Bring your craft to the world</div>
+          </div>
+          <div class="perf"></div>
+          <div class="ticket-includes">Includes</div>
+          <ul>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Upload products in minutes</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Capture images with your phone</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Add details with voice notes</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Receive & manage orders</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Track payments & inventory</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Training & ongoing support</li>
+          </ul>
+          <a class="cta sm" href="#contact"><span class="lbl">Join as an Artisan</span><span class="sq"><svg viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5 11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+        <div class="ticket darkt">
+          <div class="ticket-top">
+            <div class="ticket-ic"><svg viewBox="0 0 32 32" fill="none"><path d="M6 11a3 3 0 0 0 0 10v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-10V8a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v3Z" stroke="currentColor" stroke-width="1.4"/><path d="M18 6v20" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 3"/></svg></div>
+            <div class="ticket-title">For Buyers</div>
+            <div class="ticket-sub">Source at scale without losing the craft</div>
+          </div>
+          <div class="perf"></div>
+          <div class="ticket-includes">Includes</div>
+          <ul>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Browse authentic products</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Request bulk orders</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Track every shipment</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Chat directly with suppliers</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>AI-assisted sourcing</li>
+            <li><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Export & documentation handled</li>
+          </ul>
+          <a class="cta light sm" href="#contact"><span class="lbl">Start Sourcing</span><span class="sq"><svg viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5 11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-head reveal">
+        <div>
+          <p class="eyebrow" style="margin-bottom:16px">Let's Connect</p>
+          <h2 class="head">From local craft<br>to global discovery.</h2>
+        </div>
+        <p class="lead">Have a sourcing requirement, or want to bring your craft to the world? Our team would love to hear from you.</p>
+      </div>
+
+      <div class="info-wrap reveal">
+        <div class="info-img"><img src="assets/craft/carpet.jpg" alt="Artisan hand-knotting a carpet"></div>
+        <div class="info-grid">
+          <div class="info-box"><div class="k">Based In</div><div class="v">Jaipur, Rajasthan<br>India</div></div>
+          <div class="info-box"><div class="k">Hours</div><div class="v">Mon – Sat<br>10 AM – 7 PM IST</div></div>
+          <div class="info-box"><div class="k">Email</div><div class="v">hello@craftbridge.com</div></div>
+          <div class="info-box"><div class="k">Phone</div><div class="v">+91 98183 53331</div></div>
+        </div>
+      </div>
+
+      <div class="form-panel reveal">
+        <form id="inquiry">
+          <div class="field"><label>Full Name</label><input name="name" placeholder="Your name" required></div>
+          <div class="field"><label>Business Name</label><input name="business" placeholder="Company (optional)"></div>
+          <div class="field"><label>Email Address</label><input type="email" name="email" placeholder="you@company.com" required></div>
+          <div class="field"><label>Phone Number</label><input name="phone" placeholder="+1 ..."></div>
+          <div class="field full"><label>I Am A</label>
+            <select name="role">
+              <option value="">Select one…</option>
+              <option>Artisan</option><option>Wholesaler</option><option>Retailer</option><option>Interior Designer</option><option>Hotel</option><option>Furniture Brand</option><option>Online Seller</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field full"><label>Tell Us About Your Requirement</label><textarea name="message" rows="3" placeholder="What are you looking to source or sell?"></textarea></div>
+          <button class="cta full" type="submit"><span class="lbl">Send Inquiry</span><span class="sq"><svg viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5 11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+        </form>
+        <div class="sent" id="sent"><h3>Thank you.</h3><p>Your inquiry has been received — our team will get back to you shortly.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="polaroids reveal">
+        <div class="pol p1"><img src="assets/craft/mandala.jpg" alt=""></div>
+        <div class="pol p2"><img src="assets/craft/kundan-clutch.jpg" alt=""></div>
+        <div class="pol p3"><img src="assets/craft/potter-smile.jpg" alt=""></div>
+      </div>
+      <div class="foot-contact">
+        <a href="mailto:hello@craftbridge.com">hello@craftbridge.com</a>
+        <a class="phone" href="tel:+919818353331">+91 98183 53331</a>
+      </div>
+      <nav class="foot-nav" style="position:static;background:none;padding:0;border-radius:0">
+        <a href="#top">Home</a><a href="#about">About</a><a href="#makers">Makers</a><a href="#shop">Shop</a><a href="#ai">AI</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-3.3 17.4c-.08-.7-.15-1.8.03-2.6.16-.7 1.05-4.4 1.05-4.4s-.27-.53-.27-1.32c0-1.24.72-2.16 1.6-2.16.76 0 1.13.57 1.13 1.25 0 .76-.48 1.9-.73 2.95-.21.88.44 1.6 1.3 1.6 1.57 0 2.77-1.65 2.77-4.03 0-2.1-1.51-3.58-3.67-3.58-2.5 0-3.97 1.87-3.97 3.8 0 .75.29 1.56.65 2 .07.08.08.16.06.24l-.24 1c-.04.16-.13.2-.3.12-1.1-.51-1.79-2.12-1.79-3.42 0-2.78 2.02-5.34 5.83-5.34 3.06 0 5.44 2.18 5.44 5.1 0 3.04-1.92 5.49-4.58 5.49-.9 0-1.74-.47-2.03-1.02l-.55 2.1c-.2.77-.74 1.73-1.1 2.32A9 9 0 1 0 12 3Z" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10v7M7 7.5v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+      </div>
+      <div class="copyright">© 2026 CraftBridge. Connecting Continents. Creating Opportunities. All rights reserved.</div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- MENU OVERLAY -->
+<div class="overlay" id="overlay">
+  <div class="overlay-top">
+    <a href="#top" class="brand" data-close><span>CRAFT<b>BRIDGE</b></span></a>
+    <button class="close-btn" id="menuClose">CLOSE <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
-</footer>
+  <div class="overlay-links">
+    <a href="#top" data-close><span class="n">01</span>Home</a>
+    <a href="#about" data-close><span class="n">02</span>About</a>
+    <a href="#makers" data-close><span class="n">03</span>Makers</a>
+    <a href="#shop" data-close><span class="n">04</span>Shop</a>
+    <a href="#ai" data-close><span class="n">05</span>AI</a>
+    <a href="#join" data-close><span class="n">06</span>Join</a>
+    <a href="#contact" data-close><span class="n">07</span>Contact</a>
+  </div>
+  <div class="overlay-foot">
+    <span>Connecting Continents. Creating Opportunities.</span>
+    <a href="mailto:hello@craftbridge.com">hello@craftbridge.com</a>
+  </div>
+</div>
+
+<button class="totop" id="totop" aria-label="Back to top"><svg viewBox="0 0 16 16" fill="none"><path d="M8 12.5V3.5M8 3.5 4 7.5M8 3.5l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
 <script>
-// Scroll reveal
-const io = new IntersectionObserver(function(entries){
-  entries.forEach(function(en){
-    if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-  });
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-// Contact form (front-end only — wire to your backend or a form service later)
-document.getElementById('inquiry-form').addEventListener('submit',function(e){
-  e.preventDefault();
-  this.style.display='none';
-  document.getElementById('sent-box').style.display='block';
+// enable reveal styling only when JS runs (no-JS/failed-JS shows everything)
+document.documentElement.classList.add('js');
+// reveal with fallbacks so content can never ship blank
+var reveals=[].slice.call(document.querySelectorAll('.reveal'));
+function showNear(){var h=window.innerHeight||800;reveals.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<h*0.92){el.classList.add('in');}});}
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+  reveals.forEach(function(el){io.observe(el);});
+}else{reveals.forEach(function(el){el.classList.add('in');});}
+showNear();
+window.addEventListener('load',showNear);
+// hard fallback: if anything is still hidden after 1.2s, reveal all
+setTimeout(function(){reveals.forEach(function(el){el.classList.add('in');});},1200);
+// menu
+var ov=document.getElementById('overlay');
+function openMenu(){ov.classList.add('open');document.body.style.overflow='hidden';}
+function closeMenu(){ov.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('menuOpen').addEventListener('click',openMenu);
+document.getElementById('menuClose').addEventListener('click',closeMenu);
+document.querySelectorAll('[data-close]').forEach(function(a){a.addEventListener('click',closeMenu);});
+// nav shadow + back to top
+var nav=document.getElementById('nav'),tt=document.getElementById('totop');
+window.addEventListener('scroll',function(){
+  var y=window.scrollY;
+  nav.classList.toggle('scrolled',y>20);
+  tt.classList.toggle('show',y>700);
+},{passive:true});
+tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+// form
+document.getElementById('inquiry').addEventListener('submit',function(e){
+  e.preventDefault();this.style.display='none';document.getElementById('sent').style.display='block';
 });
 </script>
 </body>
