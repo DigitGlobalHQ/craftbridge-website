@@ -3,11 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WNV44MCC3Z"></script>
+<!-- Google tag (gtag.js) with Consent Mode v2 -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  // Default: deny storage until the visitor chooses (Consent Mode v2)
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+  // Re-apply a previously granted choice as early as possible
+  try {
+    if (localStorage.getItem('cb_consent') === 'granted') {
+      gtag('consent', 'update', {
+        ad_storage: 'granted', ad_user_data: 'granted',
+        ad_personalization: 'granted', analytics_storage: 'granted'
+      });
+    }
+  } catch (e) {}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WNV44MCC3Z"></script>
+<script>
   gtag('js', new Date());
   gtag('config', 'G-WNV44MCC3Z');
 </script>
@@ -326,6 +345,20 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
 .post-body p.post-close{color:var(--ink);border-top:1px solid var(--line);padding-top:26px;margin-top:32px;margin-bottom:0}
 .post-body a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-dk);transition:text-decoration-color .25s}
 .post-body a:hover{text-decoration-color:var(--ink)}
+
+/* ---------- COOKIE CONSENT ---------- */
+.cookie{position:fixed;left:16px;bottom:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:160;width:min(400px,calc(100vw - 32px));background:var(--paper);border:1px solid var(--line-dk);border-radius:18px;box-shadow:0 26px 60px -24px rgba(60,40,20,.55);padding:22px 22px 20px;opacity:0;transform:translateY(14px);visibility:hidden;transition:opacity .4s ease,transform .4s ease,visibility .4s}
+.cookie.show{opacity:1;transform:none;visibility:visible}
+.cookie-title{font-size:12px;letter-spacing:.16em;font-weight:600;text-transform:uppercase;color:var(--muted-2)}
+.cookie-text{font-size:13.5px;line-height:1.6;color:var(--muted-2);margin-top:8px}
+.cookie-actions{display:flex;gap:10px;margin-top:16px}
+.cookie-btn{font-family:inherit;font-size:12px;letter-spacing:.08em;font-weight:600;text-transform:uppercase;border-radius:999px;padding:11px 22px;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.cookie-btn.accept{background:var(--ink);color:var(--blush-1);border:1px solid var(--ink)}
+.cookie-btn.accept:hover{background:#2a281f;border-color:#2a281f}
+.cookie-btn.decline{background:transparent;color:var(--ink);border:1px solid var(--line-dk)}
+.cookie-btn.decline:hover{border-color:var(--ink)}
+.cookie-reopen{background:none;border:0;color:#7d7a70;font-family:inherit;font-size:12px;letter-spacing:.06em;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px;transition:color .25s}
+.cookie-reopen:hover{color:#fff}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:1024px){
@@ -722,7 +755,7 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
         <a href="https://www.linkedin.com/company/crafting-bridge-world" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10v7M7 7.5v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
         <a href="https://x.com/craftbridgew" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
       </div>
-      <div class="copyright">© 2026 CraftBridge. Connecting Continents. Creating Opportunities. All rights reserved.</div>
+      <div class="copyright">© 2026 CraftBridge. Connecting Continents. Creating Opportunities. All rights reserved. · <button class="cookie-reopen" id="cookieReopen">Cookie Preferences</button></div>
     </div>
   </footer>
 
@@ -751,6 +784,16 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
 </div>
 
 <button class="totop" id="totop" aria-label="Back to top"><svg viewBox="0 0 16 16" fill="none"><path d="M8 12.5V3.5M8 3.5 4 7.5M8 3.5l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<!-- COOKIE CONSENT -->
+<div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p class="cookie-title">Your privacy</p>
+  <p class="cookie-text">We use cookies to measure traffic and improve your experience. Analytics stays off until you choose.</p>
+  <div class="cookie-actions">
+    <button class="cookie-btn accept" id="cookieAccept">Accept</button>
+    <button class="cookie-btn decline" id="cookieDecline">Decline</button>
+  </div>
+</div>
 
 <script>
 // enable reveal styling only when JS runs (no-JS/failed-JS shows everything)
@@ -793,6 +836,25 @@ if(post&&postToggle){postToggle.addEventListener('click',function(){
   postToggle.querySelector('.lbl').textContent=open?'Hide the Story':'Read the Story';
   if(postBody)postBody.inert=!open;
 });}
+// cookie consent (Google Consent Mode v2)
+(function(){
+  var el=document.getElementById('cookie');
+  if(!el) return;
+  var stored;try{stored=localStorage.getItem('cb_consent');}catch(e){}
+  function show(){el.classList.add('show');}
+  function set(v){
+    try{localStorage.setItem('cb_consent',v);}catch(e){}
+    if(v==='granted'&&typeof gtag==='function'){
+      gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    }
+    el.classList.remove('show');
+  }
+  document.getElementById('cookieAccept').addEventListener('click',function(){set('granted');});
+  document.getElementById('cookieDecline').addEventListener('click',function(){set('denied');});
+  var re=document.getElementById('cookieReopen');
+  if(re)re.addEventListener('click',function(){show();});
+  if(stored!=='granted'&&stored!=='denied'){setTimeout(show,700);}
+})();
 </script>
 </body>
 </html>
