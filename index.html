@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CraftBridge — Where Indian Craft Meets the World</title>
-<meta name="description" content="CraftBridge connects authentic Indian artisans with global buyers through AI-powered sourcing — discovery, procurement, quality control, catalogs and export in one connected platform.">
+<meta name="description" content="CraftBridge connects authentic Indian artisans with global buyers through AI-powered sourcing — procurement, quality control, catalogs and export.">
 <meta name="theme-color" content="#ecdccb">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
@@ -13,6 +13,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://www.craftbridgeworld.com/">
+<meta name="author" content="CraftBridge">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="Indian handicrafts, Indian artisans, Indian craftsmanship, handmade products from India, traditional Indian crafts, authentic Indian handicrafts, Indian handicraft exporters, buy Indian handicrafts, handcrafted products, Indian handmade decor">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CraftBridge">
+<meta property="og:title" content="CraftBridge — Where Indian Craft Meets the World">
+<meta property="og:description" content="CraftBridge connects authentic Indian artisans with global buyers through AI-powered sourcing — discovery, procurement, quality control, catalogs and export in one connected platform.">
+<meta property="og:url" content="https://www.craftbridgeworld.com/">
+<meta property="og:image" content="https://www.craftbridgeworld.com/assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CraftBridge — Where Indian Craft Meets the World">
+<meta property="og:locale" content="en_US">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CraftBridge — Where Indian Craft Meets the World">
+<meta name="twitter:description" content="Authentic Indian handicrafts, connected to global buyers through AI-powered sourcing — discovery, procurement, quality and export in one platform.">
+<meta name="twitter:image" content="https://www.craftbridgeworld.com/assets/og-cover.jpg">
+<meta name="twitter:site" content="@craftbridgew">
 <style>
 :root{
   --blush-1:#f4e8da; --blush-2:#e9d2be; --blush:#efdfce;
@@ -268,6 +289,36 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
 .totop.show{opacity:1;transform:none}
 .totop svg{width:18px;height:18px}
 
+/* ---------- JOURNAL / BLOG ---------- */
+.journal{background:var(--paper-warm);padding:104px 0}
+.post{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 20px 50px -34px rgba(60,40,20,.4)}
+.post-head{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+.post-cover{overflow:hidden;background:var(--mat)}
+.post-cover img{width:100%;height:100%;object-fit:cover;min-height:320px;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.post:hover .post-cover img{transform:scale(1.04)}
+.post-intro{padding:44px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.post-kicker{font-size:11px;letter-spacing:.2em;font-weight:600;text-transform:uppercase;color:var(--muted-2)}
+.post-title{font-size:clamp(23px,2.5vw,33px);font-weight:300;letter-spacing:-.02em;line-height:1.08;margin:16px 0 14px;text-transform:none}
+.post-excerpt{font-size:15px;line-height:1.62;color:var(--muted-2);margin-bottom:28px;text-wrap:pretty}
+.post-cta{display:inline-flex;align-items:center;gap:8px;cursor:pointer;background:none;border:0;padding:0;font-family:inherit}
+.post-cta .lbl{background:var(--ink);color:var(--blush-1);border-radius:999px;padding:14px 24px;font-size:12px;letter-spacing:.14em;font-weight:600;text-transform:uppercase;transition:background .25s;white-space:nowrap}
+.post-cta .chev{width:44px;height:44px;border-radius:12px;background:var(--ink);color:var(--blush-1);display:flex;align-items:center;justify-content:center;transition:transform .45s cubic-bezier(.2,.7,.2,1),background .25s}
+.post-cta .chev svg{width:16px;height:16px}
+.post-cta:hover .lbl,.post-cta:hover .chev{background:#2a281f}
+.post.open .post-cta .chev{transform:rotate(180deg)}
+.post-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s cubic-bezier(.2,.7,.2,1)}
+.post.open .post-panel{grid-template-rows:1fr}
+.post-panel-inner{overflow:hidden}
+.post-body{border-top:1px solid var(--line);padding:0 44px 44px}
+.post-body-inner{max-width:720px;margin:0 auto;padding-top:36px}
+.post-body h4{font-size:clamp(19px,2vw,23px);font-weight:500;letter-spacing:-.01em;line-height:1.18;color:var(--ink);margin:36px 0 12px;text-transform:none}
+.post-body h4:first-child{margin-top:0}
+.post-body p{font-size:16px;line-height:1.78;color:var(--ink-2);margin:0 0 20px}
+.post-body p.lede{font-size:19px;line-height:1.66;color:var(--ink);margin-bottom:28px}
+.post-body p.post-close{color:var(--ink);border-top:1px solid var(--line);padding-top:26px;margin-top:32px;margin-bottom:0}
+.post-body a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-dk);transition:text-decoration-color .25s}
+.post-body a:hover{text-decoration-color:var(--ink)}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:1024px){
   .container{padding-left:32px;padding-right:32px}
@@ -295,6 +346,12 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
   form{grid-template-columns:1fr 1fr;gap:22px 18px}
   .frame .mat{padding:12px}
   .frame .meta h3{font-size:15px}
+  .journal{padding:66px 0}
+  .post-head{grid-template-columns:1fr}
+  .post-cover img{min-height:210px}
+  .post-intro{padding:28px 22px}
+  .post-body{padding:0 22px 30px}
+  .post-body-inner{padding-top:28px}
   .polaroids .p1{transform:rotate(-11deg) translateX(-70px)}
   .polaroids .p3{transform:rotate(12deg) translateX(70px)}
 }
@@ -310,6 +367,50 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
   .foot-nav{gap:18px}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.craftbridgeworld.com/#organization",
+      "name": "CraftBridge",
+      "url": "https://www.craftbridgeworld.com/",
+      "logo": "https://www.craftbridgeworld.com/assets/favicon-512.png",
+      "email": "hello@craftbridgeworld.com",
+      "description": "CraftBridge connects authentic Indian artisans with global buyers through AI-powered sourcing, procurement, quality control and export.",
+      "sameAs": [
+        "https://www.instagram.com/craftbridgeworld",
+        "https://youtube.com/@craftbridgeworld",
+        "https://www.facebook.com/share/1Cyr9SDtxo/",
+        "https://www.linkedin.com/company/crafting-bridge-world",
+        "https://x.com/craftbridgew"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.craftbridgeworld.com/#website",
+      "url": "https://www.craftbridgeworld.com/",
+      "name": "CraftBridge",
+      "publisher": { "@id": "https://www.craftbridgeworld.com/#organization" }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The Hands Behind Indian Handicrafts: Why the World Should Know the Maker, Not Just the Product",
+      "description": "Discover the story behind Indian handicrafts, the artisans who create them, and how technology can help connect Indian craftsmanship with global buyers.",
+      "image": "https://www.craftbridgeworld.com/assets/craft/craft-detail.jpg",
+      "author": { "@id": "https://www.craftbridgeworld.com/#organization" },
+      "publisher": { "@id": "https://www.craftbridgeworld.com/#organization" },
+      "datePublished": "2026-08-13",
+      "dateModified": "2026-08-13",
+      "keywords": "Indian handicrafts, Indian artisans, Indian craftsmanship, handmade products from India, traditional Indian crafts, authentic Indian handicrafts, Indian handmade products, Indian handicraft exporters",
+      "inLanguage": "en",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.craftbridgeworld.com/#journal" },
+      "url": "https://www.craftbridgeworld.com/#journal"
+    }
+  ]
+}
+</script>
 </head>
 <body id="top">
 
@@ -451,6 +552,57 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
     </div>
   </section>
 
+  <!-- JOURNAL / BLOG -->
+  <section class="journal" id="journal">
+    <div class="container">
+      <div class="block-head reveal" style="text-align:left;margin-bottom:44px">
+        <p class="eyebrow">The Journal</p>
+        <h2 class="head" style="margin-top:14px">Stories from the bridge.</h2>
+      </div>
+      <article class="post reveal" id="post">
+        <div class="post-head">
+          <div class="post-cover"><img src="assets/craft/craft-detail.jpg" alt="Indian artisan shaping a handcrafted product by hand"></div>
+          <div class="post-intro">
+            <p class="post-kicker">Indian Handicrafts · Artisan Stories</p>
+            <h3 class="post-title" id="postTitle">The Hands Behind Indian Handicrafts: Why the World Should Know the Maker, Not Just the Product</h3>
+            <p class="post-excerpt">Behind every authentic Indian handicraft is a person — and somewhere between the workshop and the world, their story tends to disappear. Here's how CraftBridge is closing that distance.</p>
+            <button class="post-cta" id="postToggle" aria-expanded="false" aria-controls="postBody">
+              <span class="lbl">Read the Story</span>
+              <span class="chev" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+          </div>
+        </div>
+        <div class="post-panel" id="postBody" role="region" aria-labelledby="postTitle" inert>
+          <div class="post-panel-inner">
+            <div class="post-body">
+              <div class="post-body-inner">
+                <p class="lede">Walk into a beautifully designed home in New York, Dubai, London or Singapore, and something handmade will often catch your eye — a carved wooden table, a woven basket, an intricate piece of wall decor. You might admire the design. You might ask where it came from. But one question rarely gets asked: who made it?</p>
+                <p>Behind every authentic Indian handicraft is a person — someone who learned a skill passed down through generations, who reads the grain of wood, the tension of a loom, the patience a single carving demands. What looks like a product on a screen is really hours, days, sometimes weeks of human effort. Yet somewhere between the artisan's workshop and the final customer, that story tends to disappear. The product reaches the world. The maker often does not.</p>
+                <h4>The world already wants Indian handicrafts</h4>
+                <p>India holds an extraordinary range of traditional craftsmanship — wood carving, metalwork, textiles, pottery, baskets and furniture, plus countless regional and traditional Indian crafts that machines struggle to imitate. The small variations, the marks of the tools, the character of the raw material: to buyers around the world these aren't flaws, they're the reason handmade products from India feel different. The modern customer doesn't want another mass-produced object; they want something authentic, something with a soul. The problem is that the people who make these products are usually cut off from the people who want to buy them.</p>
+                <h4>The long journey between two hands</h4>
+                <p>Picture an artisan in a small workshop, shaping a piece from raw material. It's photographed, enters a supply chain, and passes through business after business — packaged, transported, marketed and finally sold thousands of kilometres away. By the time a customer sees it, the piece has taken on a new identity. They see a beautiful handmade product, but never the maker, never the weeks of work, never the story behind the design. That gap is exactly where the opportunity begins.</p>
+                <h4>What if the artisan could reach the world?</h4>
+                <p>What if a maker could photograph a product right from their workshop, describe it in a simple voice note, and let technology turn that into a professional listing — discoverable by international buyers, interior designers, hotels and online retailers? What if orders, inventory and payments all lived in one place? That is the idea behind CraftBridge. We start from one belief: Indian artisans shouldn't have to become technologists, exporters and marketers just to reach a global market. Technology should carry that weight for them.</p>
+                <h4>Where AI meets Indian craftsmanship</h4>
+                <p>AI is usually framed as automation and software. But it can also be a bridge between traditional craftsmanship and the modern marketplace. Through <a href="#ai">CraftBridge's AI tools</a>, a product image can be enhanced, its background removed, rough notes turned into a polished description, keywords and pricing suggested, demand forecast, inventory tracked, buyer questions answered and languages translated. None of it replaces the artisan — it removes the barriers standing between the artisan and the customer. The craft stays human; the technology simply helps it travel.</p>
+                <h4>From a small workshop to a global shelf</h4>
+                <p>When the distance between maker and buyer shrinks, the workshop stops being the end of the journey and becomes the beginning. A handcrafted product is documented, priced and catalogued — and suddenly a US wholesaler can discover it, an interior designer can specify it for a project, a hotel can source it for a new property, and marketplaces can carry it to customers everywhere. Our planned buyer ecosystem spans US wholesalers, hotels, designers, furniture and home-decor brands, and marketplaces from Amazon to Wayfair to Etsy. You can <a href="#makers">meet some of the makers</a> and <a href="#shop">browse the marketplace</a> they supply.</p>
+                <h4>Seeing more than the finished product</h4>
+                <p>We also want people to see how the craft is made — the material being chosen, the first cut, the first layer of colour, the repeated movement of skilled hands, the final inspection. When customers understand the journey, they understand the value. That is the difference between owning an object and owning a story.</p>
+                <h4>Fairer value begins with a better connection</h4>
+                <p>This was never only about selling more. An artisan's work has value long before it reaches a showroom, and the person who created it deserves a real share of the value it generates. That takes better market access, better pricing, better procurement and logistics, better technology — and better storytelling. CraftBridge is built to bring those pieces together: not just another marketplace, but infrastructure around Indian craftsmanship, from procurement and quality control to warehousing, export documentation, GST, IEC and customs — the barriers that usually stop small makers from selling abroad.</p>
+                <h4>The future should still have human hands</h4>
+                <p>Technology is reshaping nearly every industry, but some things shouldn't be automated away — and the human touch in craftsmanship is one of them. A machine can copy a shape, an algorithm can suggest a price, software can predict demand. But the hand that makes the original still matters. The future of Indian handicrafts isn't a choice between tradition and technology; it's both, together — human hands create the craft, AI helps it travel further, and global buyers give it a larger stage, until the story finally reaches the person who values it most.</p>
+                <p class="post-close">CraftBridge begins with one question: what happens when the world's demand for authentic Indian craftsmanship finally meets the people who create it? Our answer is a platform connecting Indian artisans with global buyers, with a mission to empower one million makers. But every mission starts with one product, one artisan, one story. <a href="#join">Join us</a> or <a href="#contact">start a conversation</a> — and help build the bridge.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <!-- JOIN / TICKETS -->
   <section class="join" id="join">
     <div class="container">
@@ -553,7 +705,7 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
         <a class="phone" href="tel:+919818353331">+91 98183 53331</a>
       </div>
       <nav class="foot-nav" style="position:static;background:none;padding:0;border-radius:0">
-        <a href="#top">Home</a><a href="#about">About</a><a href="#makers">Makers</a><a href="#shop">Shop</a><a href="#ai">AI</a><a href="#contact">Contact</a>
+        <a href="#top">Home</a><a href="#about">About</a><a href="#makers">Makers</a><a href="#shop">Shop</a><a href="#ai">AI</a><a href="#journal">Journal</a><a href="#contact">Contact</a>
       </nav>
       <div class="socials">
         <a href="https://www.instagram.com/craftbridgeworld" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a>
@@ -580,8 +732,9 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
     <a href="#makers" data-close><span class="n">03</span>Makers</a>
     <a href="#shop" data-close><span class="n">04</span>Shop</a>
     <a href="#ai" data-close><span class="n">05</span>AI</a>
-    <a href="#join" data-close><span class="n">06</span>Join</a>
-    <a href="#contact" data-close><span class="n">07</span>Contact</a>
+    <a href="#journal" data-close><span class="n">06</span>Journal</a>
+    <a href="#join" data-close><span class="n">07</span>Join</a>
+    <a href="#contact" data-close><span class="n">08</span>Contact</a>
   </div>
   <div class="overlay-foot">
     <span>Connecting Continents. Creating Opportunities.</span>
@@ -624,6 +777,14 @@ tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'}
 document.getElementById('inquiry').addEventListener('submit',function(e){
   e.preventDefault();this.style.display='none';document.getElementById('sent').style.display='block';
 });
+// journal: expand/collapse the story
+var post=document.getElementById('post'),postToggle=document.getElementById('postToggle'),postBody=document.getElementById('postBody');
+if(post&&postToggle){postToggle.addEventListener('click',function(){
+  var open=post.classList.toggle('open');
+  postToggle.setAttribute('aria-expanded',open?'true':'false');
+  postToggle.querySelector('.lbl').textContent=open?'Hide the Story':'Read the Story';
+  if(postBody)postBody.inert=!open;
+});}
 </script>
 </body>
 </html>
