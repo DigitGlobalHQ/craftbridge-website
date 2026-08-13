@@ -351,6 +351,7 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
 .cookie.show{opacity:1;transform:none;visibility:visible}
 .cookie-title{font-size:12px;letter-spacing:.16em;font-weight:600;text-transform:uppercase;color:var(--muted-2)}
 .cookie-text{font-size:13.5px;line-height:1.6;color:var(--muted-2);margin-top:8px}
+.cookie-text a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
 .cookie-actions{display:flex;gap:10px;margin-top:16px}
 .cookie-btn{font-family:inherit;font-size:12px;letter-spacing:.08em;font-weight:600;text-transform:uppercase;border-radius:999px;padding:11px 22px;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
 .cookie-btn.accept{background:var(--ink);color:var(--blush-1);border:1px solid var(--ink)}
@@ -755,7 +756,7 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
         <a href="https://www.linkedin.com/company/crafting-bridge-world" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10v7M7 7.5v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
         <a href="https://x.com/craftbridgew" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
       </div>
-      <div class="copyright">© 2026 CraftBridge. Connecting Continents. Creating Opportunities. All rights reserved. · <button class="cookie-reopen" id="cookieReopen">Cookie Preferences</button></div>
+      <div class="copyright">© 2026 CraftBridge. Connecting Continents. Creating Opportunities. All rights reserved. · <a href="/privacy" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Privacy</a> · <button class="cookie-reopen" id="cookieReopen">Cookie Preferences</button></div>
     </div>
   </footer>
 
@@ -788,7 +789,7 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
 <!-- COOKIE CONSENT -->
 <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <p class="cookie-title">Your privacy</p>
-  <p class="cookie-text">We use cookies to measure traffic and improve your experience. Analytics stays off until you choose.</p>
+  <p class="cookie-text">We use cookies to measure traffic and improve your experience. Analytics stays off until you choose. <a href="/privacy">Privacy&nbsp;Policy</a>.</p>
   <div class="cookie-actions">
     <button class="cookie-btn accept" id="cookieAccept">Accept</button>
     <button class="cookie-btn decline" id="cookieDecline">Decline</button>
