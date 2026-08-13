@@ -716,6 +716,10 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
 
       <div class="form-panel reveal">
         <form id="inquiry">
+          <input type="hidden" name="_subject" value="New CraftBridge inquiry">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
           <div class="field"><label>Full Name</label><input name="name" placeholder="Your name" required></div>
           <div class="field"><label>Business Name</label><input name="business" placeholder="Company (optional)"></div>
           <div class="field"><label>Email Address</label><input type="email" name="email" placeholder="you@company.com" required></div>
@@ -729,6 +733,7 @@ footer{background:var(--black);color:#f2efe7;border-radius:0 0 var(--radius) var
           <div class="field full"><label>Tell Us About Your Requirement</label><textarea name="message" rows="3" placeholder="What are you looking to source or sell?"></textarea></div>
           <button class="cta full" type="submit"><span class="lbl">Send Inquiry</span><span class="sq"><svg viewBox="0 0 16 16" fill="none"><path d="M4.5 11.5 11.5 4.5M11.5 4.5H5.5M11.5 4.5V10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
         </form>
+        <p class="form-error" id="formError" style="display:none;color:#9a2b2b;font-size:13.5px;line-height:1.5;margin-top:16px">Sorry — something went wrong sending your message. Please email us directly at <a href="mailto:hello@craftbridgeworld.com" style="color:inherit;text-decoration:underline">hello@craftbridgeworld.com</a>.</p>
         <div class="sent" id="sent"><h3>Thank you.</h3><p>Your inquiry has been received — our team will get back to you shortly.</p></div>
       </div>
     </div>
@@ -825,10 +830,23 @@ window.addEventListener('scroll',function(){
   tt.classList.toggle('show',y>700);
 },{passive:true});
 tt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
-// form
-document.getElementById('inquiry').addEventListener('submit',function(e){
-  e.preventDefault();this.style.display='none';document.getElementById('sent').style.display='block';
-});
+// contact form -> Formsubmit (AJAX, no page reload)
+var inquiry=document.getElementById('inquiry');
+if(inquiry){inquiry.addEventListener('submit',function(e){
+  e.preventDefault();
+  var lbl=inquiry.querySelector('.lbl'),err=document.getElementById('formError'),original=lbl?lbl.textContent:'';
+  if(lbl)lbl.textContent='Sending…';
+  if(err)err.style.display='none';
+  fetch('https://formsubmit.co/ajax/hello@craftbridgeworld.com',{
+    method:'POST',headers:{'Accept':'application/json'},body:new FormData(inquiry)
+  }).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(){
+    inquiry.style.display='none';
+    document.getElementById('sent').style.display='block';
+  }).catch(function(){
+    if(lbl)lbl.textContent=original;
+    if(err)err.style.display='block';
+  });
+});}
 // journal: expand/collapse the story
 var post=document.getElementById('post'),postToggle=document.getElementById('postToggle'),postBody=document.getElementById('postBody');
 if(post&&postToggle){postToggle.addEventListener('click',function(){
